@@ -225,7 +225,7 @@ $h1 = '<span class="black">THE BRAND</span><br>OF LUXERIOUS <span class="recolor
 	</section>
 </main>
 <footer class="footer pad-centerier">
-	<div class="copiryght">&copy; 2021 Brand All Rights Reserved.</div>
+	<div class="copiryght">&copy; <?=date("Y");?> Brand All Rights Reserved.</div>
 	<div class="footer__socials">
 		<a href="#" class="footer__icon"><img src="assets/images/dist/icons/facebook-ico.svg" alt="#"><img src="assets/images/dist/icons/facebook-ico-white.svg" alt="#"></a>
 		<a href="#" class="footer__icon"><img src="assets/images/dist/icons/twitter-ico.svg" alt="#"><img src="assets/images/dist/icons/twitter-ico-white.svg" alt="#"></a>
