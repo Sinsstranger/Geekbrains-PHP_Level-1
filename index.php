@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set('Europe/Moscow');
+/* ============================================  Урок 1   ============================================ */
 /**
  * 1. Установить программное обеспечение: веб-сервер, базу данных, интерпретатор, текстовый редактор. Проверить, что все работает правильно.
  * сделано даже лучше - докер всему голова
@@ -21,6 +23,91 @@ $h1 = '<span class="black">THE BRAND</span><br>OF LUXERIOUS <span class="recolor
  */
 [$a, $b] = [1, 2];
 [$a, $b] = [$b, $a];
+/* ============================================  Урок 2   ============================================ */
+/**
+ * 1. Объявить две целочисленные переменные $a и $b и задать им произвольные начальные значения. Затем написать скрипт, который работает по следующему принципу:
+ * если $a и $b положительные, вывести их разность;
+ * если $а и $b отрицательные, вывести их произведение;
+ * если $а и $b разных знаков, вывести их сумму;
+ */
+function lesson_2_task1($a = 0, $b = 0)
+{
+	$result = null;
+	if ($a >= 0 && $b >= 0) {
+		$result = $a - $b;
+	} elseif ($a < 0 && $b < 0) {
+		$result = $a * $b;
+	} elseif (!!($a || $b)) {
+		$result = $a + $b;
+	}
+	return $result;
+}
+
+/**
+ * 2. Присвоить переменной $а значение в промежутке [0..15]. С помощью оператора switch организовать вывод чисел от $a до 15. Задание по желанию - доработайте решение и используйте рекурсивную функцию
+ */
+$num_lesson_2_task2 = random_int(0, 15);
+function lesson_2_task2($num)
+{
+	return $num < 15 ? $num . ' ' . lesson_2_task2($num + 1) : $num;
+}
+
+/**
+ * 3. Реализовать основные 4 арифметические операции в виде функций с двумя параметрами. Обязательно использовать оператор return.
+ */
+$addition = fn($a = null, $b = null) => $a + $b;
+$subtraction = fn($a = null, $b = null) => $a - $b;
+$multiplication = fn($a = null, $b = null) => $a * $b;
+$division = fn($a = null, $b = null) => $b === 0 ? -1 : $a / $b;
+/**
+ * 4. Реализовать функцию с тремя параметрами: function mathOperation($arg1, $arg2, $operation), где $arg1, $arg2 – значения аргументов, $operation – строка с названием операции. В зависимости от переданного значения операции выполнить одну из арифметических операций (использовать функции из пункта 3) и вернуть полученное значение (использовать switch).
+ */
+$mathOperation = function ($arg1, $arg2, $operation) use ($addition, $subtraction, $multiplication, $division) {
+	switch ($operation) {
+		case '+':
+			return $addition($arg1, $arg2);
+		case '-':
+			return $subtraction($arg1, $arg2);
+		case '*':
+			return $multiplication($arg1, $arg2);
+		case '/':
+			return $division($arg1, $arg2);
+		default:
+			return null;
+	}
+};
+
+/**
+ * 5. Посмотреть на встроенные функции PHP. Используя имеющийся HTML-шаблон, вывести текущий год в подвале при помощи встроенных функций PHP. Делать не нужно. Сделано в первом ДЗ!
+ * 6. *С помощью рекурсии организовать функцию возведения числа в степень. Формат: function power($val, $pow), где $val – заданное число, $pow – степень. Степень int и >0
+ */
+function power($val, $pow)
+{
+	return $pow > 1 ? $val * power($val, $pow - 1) : $val;
+}
+
+/**
+ * 7. *Написать функцию, которая вычисляет текущее время и возвращает его в формате с правильными склонениями, например:
+ * 22 часа 15 минут
+ * 21 час 43 минуты
+ */
+function word_variation_rus($chislo, $mnogo, $odin, $dva)
+{
+	$ost_10 = $chislo % 10;
+	if ($ost_10 == 0 || $ost_10 >= 5 || in_array($chislo % 100, range(11, 19))) $string_txt = "$chislo $mnogo";
+	else {
+		if ($ost_10 == 1) $string_txt = "$chislo $odin";
+		else if (in_array($ost_10, range(2, 4))) $string_txt = "$chislo $dva";
+	}
+	return $string_txt;
+}
+
+function local_time()
+{
+	[$hours, $minutes] = [getdate()['hours'], getdate()['minutes']];
+	return word_variation_rus($hours, 'часов', 'час', 'часа') . ' ' . word_variation_rus($minutes, 'минут', 'минута', 'минуты');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,6 +121,9 @@ $h1 = '<span class="black">THE BRAND</span><br>OF LUXERIOUS <span class="recolor
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
 	<link rel="stylesheet" href="assets/css/main.min.css"/>
+	<script>
+		 console.log(`PHP_Level-1 Lesson-2\nЗадача 1: <?=lesson_2_task1(2, -4);?>\nЗадача 2:\n- Начальное число: <?=$num_lesson_2_task2;?>\n- Результат: <?=lesson_2_task2($num_lesson_2_task2);?>\nЗадача 3: <?=$addition(2, 2);?>\nЗадача 4: <?=$mathOperation(10, 12, '+');?>\nЗадача 6: <?=power(2, 4);?>\nЗадача 7: <?=local_time();?>`);
+	</script>
 </head>
 
 <body>
@@ -225,7 +315,7 @@ $h1 = '<span class="black">THE BRAND</span><br>OF LUXERIOUS <span class="recolor
 	</section>
 </main>
 <footer class="footer pad-centerier">
-	<div class="copiryght">&copy; <?=date("Y");?> Brand All Rights Reserved.</div>
+	<div class="copiryght">&copy; <?= date("Y"); ?> Brand All Rights Reserved.</div>
 	<div class="footer__socials">
 		<a href="#" class="footer__icon"><img src="assets/images/dist/icons/facebook-ico.svg" alt="#"><img src="assets/images/dist/icons/facebook-ico-white.svg" alt="#"></a>
 		<a href="#" class="footer__icon"><img src="assets/images/dist/icons/twitter-ico.svg" alt="#"><img src="assets/images/dist/icons/twitter-ico-white.svg" alt="#"></a>
