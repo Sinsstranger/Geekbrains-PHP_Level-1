@@ -108,6 +108,119 @@ function local_time()
 	return word_variation_rus($hours, 'часов', 'час', 'часа') . ' ' . word_variation_rus($minutes, 'минут', 'минута', 'минуты');
 }
 
+/* ============================================  Урок 3   ============================================ */
+/**
+ * 1. С помощью цикла while вывести все числа в промежутке от 0 до 100, которые делятся на 3 без остатка.1. С помощью цикла while вывести все числа в промежутке от 0 до 100, которые делятся на 3 без остатка.
+ */
+$lesson_3_task1 = function () {
+	$result = '';
+	$itterator = 0;
+	while ($itterator < 100) {
+		$result .= $itterator !== 0 && $itterator % 3 === 0 ? $itterator . ', ' : '';
+		$itterator++;
+	}
+	return preg_replace('/^(:?.+?)(:?,\s)$/', '${1}', $result);
+};
+/**
+ * 2. С помощью цикла do…while написать функцию для вывода чисел от 0 до 10, чтобы результат выглядел так:
+ * 0 – ноль.
+ * 1 – нечетное число.
+ * 2 – четное число.
+ * 3 – нечетное число.
+ * …
+ * 10 – четное число.
+ */
+$lesson_3_task2 = function () {
+	$itterator = 0;
+	do {
+		echo "\n{$itterator}" . ($itterator === 0 ? " - ноль" : ' - ' . ($itterator % 2 !== 0 ? "не" : null) . 'четное число');
+		$itterator++;
+	} while ($itterator <= 10);
+};
+/**
+ * 3. Объявить массив, в котором в качестве ключей будут использоваться названия областей, а в качестве значений – массивы с названиями городов из соответствующей области. Вывести в цикле значения массива, чтобы результат был таким:
+ * Московская область:
+ * Москва, Зеленоград, Клин
+ * Ленинградская область:
+ * Санкт-Петербург, Всеволожск, Павловск, Кронштадт
+ * Рязанская область … (названия городов можно найти на maps.yandex.ru)
+ * 8. *Повторить третье задание, но вывести на экран только города, начинающиеся с буквы «К». - сразу выполняю тут
+ */
+function lesson_3_task3($task8Symbol = false)
+{
+	$stateCities = [
+		'Московская область' => ['Москва', 'Зеленоград', 'Клин', 'Колхоз имени Ленина'],
+		'Ленинградская область' => ['Санкт-Петербург', 'Всеволожск', 'Павловск', 'Кронштадт'],
+		'Рязанская область' => ['Рязань', 'Касимов', 'Скопин', 'Сасово']
+	];
+	foreach ($stateCities as $state => &$cities) {
+		echo "{$state}:\n" . implode(', ', array_filter($cities, fn($town) => $task8Symbol && mb_substr($town, 0, 1) !== $task8Symbol ? false : $town)) . PHP_EOL;
+	}
+}
+
+/**
+ * 4. Объявить массив, индексами которого являются буквы русского языка, а значениями – соответствующие латинские буквосочетания (‘а’=> ’a’, ‘б’ => ‘b’, ‘в’ => ‘v’, ‘г’ => ‘g’, …, ‘э’ => ‘e’, ‘ю’ => ‘yu’, ‘я’ => ‘ya’).
+ * Написать функцию транслитерации строк.
+ * 5. Написать функцию, которая заменяет в строке пробелы на подчеркивания и возвращает видоизмененную строчку.
+ * 9. *Объединить две ранее написанные функции в одну, которая получает строку на русском языке, производит транслитерацию и замену пробелов на подчеркивания (аналогичная задача решается при конструировании url-адресов на основе названия статьи в блогах).
+ */
+function lesson_3_task4($input)
+{
+	$transliteMatrix = ["а" => "a", "б" => "b", "в" => "v", "г" => "g", "д" => "d",
+		"е" => "e", "ё" => "yo", "ж" => "j", "з" => "z", "и" => "i",
+		"й" => "i", "к" => "k", "л" => "l", "м" => "m", "н" => "n",
+		"о" => "o", "п" => "p", "р" => "r", "с" => "s", "т" => "t",
+		"у" => "y", "ф" => "f", "х" => "h", "ц" => "c", "ч" => "ch",
+		"ш" => "sh", "щ" => "sh", "ы" => "i", "э" => "e", "ю" => "u",
+		"я" => "ya",
+		"А" => "A", "Б" => "B", "В" => "V", "Г" => "G", "Д" => "D",
+		"Е" => "E", "Ё" => "Yo", "Ж" => "J", "З" => "Z", "И" => "I",
+		"Й" => "I", "К" => "K", "Л" => "L", "М" => "M", "Н" => "N",
+		"О" => "O", "П" => "P", "Р" => "R", "С" => "S", "Т" => "T",
+		"У" => "Y", "Ф" => "F", "Х" => "H", "Ц" => "C", "Ч" => "Ch",
+		"Ш" => "Sh", "Щ" => "Sh", "Ы" => "I", "Э" => "E", "Ю" => "U",
+		"Я" => "Ya",
+		"ь" => "", "Ь" => "", "ъ" => "", "Ъ" => "",
+		"ї" => "j", "і" => "i", "ґ" => "g", "є" => "ye",
+		"Ї" => "J", "І" => "I", "Ґ" => "G", "Є" => "YE", ' ' => '_'];
+	return strtr($input, $transliteMatrix);
+}
+
+/**
+ * 6. В имеющемся шаблоне сайта заменить статичное меню (ul – li) на генерируемое через PHP. Необходимо представить пункты меню как элементы массива и вывести их циклом. Подумать, как можно реализовать меню с вложенными подменю? Попробовать его реализовать.
+ */
+function lesson_3_task6()
+{
+	$menuData = [
+		'MAN' => ['Accessories', 'Bags', 'Denim', 'T-Shirts',],
+		'WOMAN' => ['Accessories', 'Jackets & Coats', 'Polos', 'T-Shirts', 'Shirts'],
+		'KIDS' => ['Accessories', 'Jackets & Coats', 'Polos', 'T-Shirts', 'Shirts', 'Bags'],
+	]; ?>
+	<?php
+	foreach ($menuData as $category => &$pages): ?>
+	  <li class="main-menu__item">
+		  <span class="main-menu__cat"><a href="#" class="main-menu__link"><?= $category; ?></a></span>
+			 <?php if (count($pages)): ?>
+			 <ul class="main-menu__sub">
+			   <?php foreach ($pages as &$page): ?>
+					<li class="main-menu__item"><a href="#" class="main-menu__link"><?= $page; ?></a></li>
+			   <?php endforeach; ?>
+			 </ul>
+			 <?php endif; ?>
+	  </li>
+	<?php endforeach; ?>
+<?php } ?>
+<?php
+/**
+ * 7. *Вывести с помощью цикла for числа от 0 до 9, не используя тело цикла. Выглядеть должно так:
+ * for (…){ // здесь пусто}
+ */
+function lesson_3_task7()
+{
+	for ($i = 0; $i < 10; print $i++) {
+	};
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -122,7 +235,10 @@ function local_time()
 
 	<link rel="stylesheet" href="assets/css/main.min.css"/>
 	<script>
+		 /* Урок 2 Вывод */
 		 console.log(`PHP_Level-1 Lesson-2\nЗадача 1: <?=lesson_2_task1(2, -4);?>\nЗадача 2:\n- Начальное число: <?=$num_lesson_2_task2;?>\n- Результат: <?=lesson_2_task2($num_lesson_2_task2);?>\nЗадача 3: <?=$addition(2, 2);?>\nЗадача 4: <?=$mathOperation(10, 12, '+');?>\nЗадача 6: <?=power(2, 4);?>\nЗадача 7: <?=local_time();?>`);
+		 /* Урок 3 Вывод */
+		 console.log(`PHP_Level-1 Lesson-3\nЗадача 1: <?=$lesson_3_task1();?>\nЗадача 2:<?php $lesson_3_task2();?>\nЗадача 3:\n<?php lesson_3_task3("К");?>Задача 4: <?=lesson_3_task4('Почему надо писать быдлокод еще и тут');?>\nЗадача 7: <?php lesson_3_task7();?>`);
 	</script>
 </head>
 
@@ -149,36 +265,7 @@ function local_time()
 		<label for="main-menu-trigger" class="main-menu__close"></label>
 		<p class="main-menu__title">Menu</p>
 		<ul class="main-menu__list">
-			<li class="main-menu__item">
-				<span class="main-menu__cat"><a href="#" class="main-menu__link">MAN</a></span>
-				<ul class="main-menu__sub">
-					<li class="main-menu__item"><a href="#" class="main-menu__link">Accessories</a></li>
-					<li class="main-menu__item"><a href="#" class="main-menu__link">Bags</a></li>
-					<li class="main-menu__item"><a href="#" class="main-menu__link">Denim</a></li>
-					<li class="main-menu__item"><a href="#" class="main-menu__link">T-Shirts</a></li>
-				</ul>
-			</li>
-			<li class="main-menu__item">
-				<span class="main-menu__cat"><a href="#" class="main-menu__link">WOMAN</a></span>
-				<ul class="main-menu__sub">
-					<li class="main-menu__item"><a href="#" class="main-menu__link">Accessories</a></li>
-					<li class="main-menu__item"><a href="#" class="main-menu__link">Jackets & Coats</a></li>
-					<li class="main-menu__item"><a href="#" class="main-menu__link">Polos</a></li>
-					<li class="main-menu__item"><a href="#" class="main-menu__link">T-Shirts</a></li>
-					<li class="main-menu__item"><a href="#" class="main-menu__link">Shirts</a></li>
-				</ul>
-			</li>
-			<li class="main-menu__item">
-				<span class="main-menu__cat"><a href="#" class="main-menu__link">KIDS</a></span>
-				<ul class="main-menu__sub">
-					<li class="main-menu__item"><a href="#" class="main-menu__link">Accessories</a></li>
-					<li class="main-menu__item"><a href="#" class="main-menu__link">Jackets & Coats</a></li>
-					<li class="main-menu__item"><a href="#" class="main-menu__link">Polos</a></li>
-					<li class="main-menu__item"><a href="#" class="main-menu__link">T-Shirts</a></li>
-					<li class="main-menu__item"><a href="#" class="main-menu__link">Shirts</a></li>
-					<li class="main-menu__item"><a href="#" class="main-menu__link">Bags</a></li>
-				</ul>
-			</li>
+				<?php lesson_3_task6(); ?>
 		</ul>
 	</div>
 </nav>
