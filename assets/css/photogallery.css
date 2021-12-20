@@ -1,0 +1,15 @@
+.fancy-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -.2em;
+}
+.fancy-gallery__item {
+  display: inline-flex;
+  margin: .2em;
+}
+.fancy-gallery__item img {
+  max-width: 300px;
+  height: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
