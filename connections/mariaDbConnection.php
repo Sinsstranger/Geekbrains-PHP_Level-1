@@ -1,2 +1,2 @@
 <?php
-$mariaDbConnection = mysqli_connect('MariaDb','sinstranger','example','photogallery');
+$mariaDbConnection = mysqli_connect('MariaDb','sinstranger','example','shop_db');

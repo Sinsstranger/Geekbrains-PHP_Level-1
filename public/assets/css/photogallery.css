@@ -8,8 +8,22 @@
   margin: .2em;
 }
 .fancy-gallery__item img {
-  max-width: 300px;
+  max-width: 400px;
+  max-height: 200px;
   height: auto;
   -o-object-fit: contain;
      object-fit: contain;
+}
+.add-photo-form{
+  display: grid;
+  grid-template: 1fr/repeat(2,auto);
+  grid-gap: 1em;
+  padding: .5em;
+  justify-content: start;
+  align-items: center;
+  font-size: 2rem;
+  margin-bottom: 1em;
+}
+.add-photo-form__load{
+  font-size: 2rem;
 }

@@ -202,9 +202,9 @@ function lesson_3_task6()
 		  <span class="main-menu__cat"><a href="#" class="main-menu__link"><?= $category; ?></a></span>
 			 <?php if (count($pages)): ?>
 			 <ul class="main-menu__sub">
-			   <?php foreach ($pages as &$page): ?>
+						<?php foreach ($pages as &$page): ?>
 					<li class="main-menu__item"><a href="#" class="main-menu__link"><?= $page; ?></a></li>
-			   <?php endforeach; ?>
+						<?php endforeach; ?>
 			 </ul>
 			 <?php endif; ?>
 	  </li>
@@ -233,7 +233,7 @@ function lesson_3_task7()
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 
-	<link rel="stylesheet" href="assets/css/main.min.css"/>
+	<link rel="stylesheet" href="/assets/css/main.min.css"/>
 	<script>
 		 /* Урок 2 Вывод */
 		 console.log(`PHP_Level-1 Lesson-2\nЗадача 1: <?=lesson_2_task1(2, -4);?>\nЗадача 2:\n- Начальное число: <?=$num_lesson_2_task2;?>\n- Результат: <?=lesson_2_task2($num_lesson_2_task2);?>\nЗадача 3: <?=$addition(2, 2);?>\nЗадача 4: <?=$mathOperation(10, 12, '+');?>\nЗадача 6: <?=power(2, 4);?>\nЗадача 7: <?=local_time();?>`);
@@ -253,7 +253,7 @@ function lesson_3_task7()
 			<label for="main-menu-trigger" class="interaction interaction-to-left menu-trigger"><img src="assets/images/dist/icons/menu-hamburger.svg" alt="menu-trigger"/></label>
 			<a href="/registration.html" class="interaction interaction-to-left logo"><img src="assets/images/dist/icons/login-ico.svg" alt="Login"/></a>
 			<a href="/cart.html" class="interaction interaction-to-left mini-cart">
-				<img src="assets/images/dist/icons/shop-cart-ico.svg" alt="mini-cart"/>
+				<img src="/assets/images/dist/icons/shop-cart-ico.svg" alt="mini-cart"/>
 				<span class="mini-cart__goods-count">5</span>
 			</a>
 		</div>
@@ -301,7 +301,7 @@ function lesson_3_task7()
 		<!-- 2 ряд специально не полный, чтобы понять замысел позиционирования -->
 		<div class="catalog-list">
 			<div class="catalog__item">
-				<p class="catalog__cart"><img src="assets/images/dist/product-example.png" alt="#" class="catalog__image"/>
+				<p class="catalog__cart"><img src="/assets/images/dist/product-example.png" alt="#" class="catalog__image"/>
 					<span class="add-to-cart">
             <a href="#" class="add-to-cart__button">Add to Cart</a>
          </span>
@@ -313,7 +313,7 @@ function lesson_3_task7()
 				</div>
 			</div>
 			<div class="catalog__item">
-				<p class="catalog__cart"><img src="assets/images/dist/product-example.png" alt="#" class="catalog__image"/>
+				<p class="catalog__cart"><img src="/assets/images/dist/product-example.png" alt="#" class="catalog__image"/>
 					<span class="add-to-cart">
             <a href="#" class="add-to-cart__button">Add to Cart</a>
          </span>
@@ -325,7 +325,7 @@ function lesson_3_task7()
 				</div>
 			</div>
 			<div class="catalog__item">
-				<p class="catalog__cart"><img src="assets/images/dist/product-example.png" alt="#" class="catalog__image"/>
+				<p class="catalog__cart"><img src="/assets/images/dist/product-example.png" alt="#" class="catalog__image"/>
 					<span class="add-to-cart">
             <a href="#" class="add-to-cart__button">Add to Cart</a>
          </span>
@@ -337,7 +337,7 @@ function lesson_3_task7()
 				</div>
 			</div>
 			<div class="catalog__item">
-				<p class="catalog__cart"><img src="assets/images/dist/product-example.png" alt="#" class="catalog__image"/>
+				<p class="catalog__cart"><img src="/assets/images/dist/product-example.png" alt="#" class="catalog__image"/>
 					<span class="add-to-cart">
             <a href="#" class="add-to-cart__button">Add to Cart</a>
          </span>
@@ -349,7 +349,7 @@ function lesson_3_task7()
 				</div>
 			</div>
 			<div class="catalog__item">
-				<p class="catalog__cart"><img src="assets/images/dist/product-example.png" alt="#" class="catalog__image"/>
+				<p class="catalog__cart"><img src="/assets/images/dist/product-example.png" alt="#" class="catalog__image"/>
 					<span class="add-to-cart">
             <a href="#" class="add-to-cart__button">Add to Cart</a>
          </span>
@@ -368,17 +368,17 @@ function lesson_3_task7()
 	<section class="our-advantages">
 		<div class="our-advantages__list wrapper">
 			<div class="our-advantages__item">
-				<img src="assets/images/dist/infographic/delivery.svg" alt="#" class="our-advantages__image"/>
+				<img src="/assets/images/dist/infographic/delivery.svg" alt="#" class="our-advantages__image"/>
 				<p class="our-advantages__title">Free Delivery</p>
 				<div class="our-advantages__caption">Worldwide delivery on all. Authorit tively morph next-generation innov tion with extensive models.</div>
 			</div>
 			<div class="our-advantages__item">
-				<img src="assets/images/dist/infographic/interest.svg" alt="#" class="our-advantages__image"/>
+				<img src="/assets/images/dist/infographic/interest.svg" alt="#" class="our-advantages__image"/>
 				<p class="our-advantages__title">Sales & discounts</p>
 				<div class="our-advantages__caption">Worldwide delivery on all. Authorit tively morph next-generation innov tion with extensive models.</div>
 			</div>
 			<div class="our-advantages__item">
-				<img src="assets/images/dist/infographic/crown.svg" alt="#" class="our-advantages__image"/>
+				<img src="/assets/images/dist/infographic/crown.svg" alt="#" class="our-advantages__image"/>
 				<p class="our-advantages__title">Quality assurance</p>
 				<div class="our-advantages__caption">Worldwide delivery on all. Authorit tively morph next-generation innov tion with extensive models.</div>
 			</div>
@@ -386,7 +386,7 @@ function lesson_3_task7()
 	</section>
 	<section class="subscribe pad-centerier">
 		<div class="subscribe__hello subscribe__item">
-			<img src="assets/images/dist/face.png" alt="#" class="subscribe__image">
+			<img src="/assets/images/dist/face.png" alt="#" class="subscribe__image">
 			<p class="subscribe__caption">“Vestibulum quis porttitor dui! Quisque viverra nunc mi, a pulvinar purus condimentum“</p>
 		</div>
 		<div class="subscribe__item subscribe__form">
@@ -404,12 +404,12 @@ function lesson_3_task7()
 <footer class="footer pad-centerier">
 	<div class="copiryght">&copy; <?= date("Y"); ?> Brand All Rights Reserved.</div>
 	<div class="footer__socials">
-		<a href="#" class="footer__icon"><img src="assets/images/dist/icons/facebook-ico.svg" alt="#"><img src="assets/images/dist/icons/facebook-ico-white.svg" alt="#"></a>
-		<a href="#" class="footer__icon"><img src="assets/images/dist/icons/twitter-ico.svg" alt="#"><img src="assets/images/dist/icons/twitter-ico-white.svg" alt="#"></a>
-		<a href="#" class="footer__icon"><img src="assets/images/dist/icons/pinterest-ico.svg" alt="#"><img src="assets/images/dist/icons/pinterest-ico-white.svg" alt="#"></a>
-		<a href="#" class="footer__icon"><img src="assets/images/dist/icons/instagram-ico.svg" alt="#"><img src="assets/images/dist/icons/instagram-ico-white.svg" alt="#"></a>
+		<a href="#" class="footer__icon"><img src="/assets/images/dist/icons/facebook-ico.svg" alt="#"><img src="assets/images/dist/icons/facebook-ico-white.svg" alt="#"></a>
+		<a href="#" class="footer__icon"><img src="/assets/images/dist/icons/twitter-ico.svg" alt="#"><img src="assets/images/dist/icons/twitter-ico-white.svg" alt="#"></a>
+		<a href="#" class="footer__icon"><img src="/assets/images/dist/icons/pinterest-ico.svg" alt="#"><img src="assets/images/dist/icons/pinterest-ico-white.svg" alt="#"></a>
+		<a href="#" class="footer__icon"><img src="/assets/images/dist/icons/instagram-ico.svg" alt="#"><img src="assets/images/dist/icons/instagram-ico-white.svg" alt="#"></a>
 	</div>
 </footer>
-<script src="assets/js/app.min.js"></script>
+<script src="/assets/js/app.min.js"></script>
 </body>
 </html>
