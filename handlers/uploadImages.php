@@ -1,7 +1,7 @@
 <?php
 function handleImages()
 {
-	$photoGalleryPath = "/assets/images/dist/photogallery/";
+	$photoGalleryPath = "/public/assets/images/dist/photogallery/";
 	$photoGalleryPathFs = "{$_SERVER['DOCUMENT_ROOT']}{$photoGalleryPath}";
 	$toFrontendAnswer = [];
 	if (isset($_FILES["uploaded-images"]) && !empty($_FILES["uploaded-images"])) {
