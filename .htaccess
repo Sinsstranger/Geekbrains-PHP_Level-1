@@ -1,8 +1,7 @@
 Options +FollowSymlinks -MultiViews -Indexes
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /
 RewriteCond %{REQUEST_URI} !^/public/.*$
-RewriteCond %{REQUEST_METHOD} !^POST$
-RewriteRule ^(.*)$ public/$1 [L,QSA]
+RewriteCond %{REQUEST_METHOD} !^(POST|PUT|PATH|DELETE|UPDATE)$
+RewriteRule ^(.*)$ /public/$1 [L,QSA]
 </IfModule>

@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/connections/mariaDbConnection.php';
-function handleUploadImages()
+header("Content-Type:application/json");
+function handleUploadImages(): string
 {
 	global $mariaDbConnection;
 	$publicDirPrefix = '/public';

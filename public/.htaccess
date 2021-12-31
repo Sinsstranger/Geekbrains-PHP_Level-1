@@ -1,3 +1,4 @@
 <IfModule mod_rewrite.c>
-RewriteBase /public
+RewriteEngine on
+RewriteBase /public/
 </IfModule>
