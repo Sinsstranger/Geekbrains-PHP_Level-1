@@ -10,26 +10,31 @@ function handleUploadImages(): string
 	$toFrontendAnswer = [];
 	if (isset($_FILES["uploaded-images"]) && !empty($_FILES["uploaded-images"])) {
 		foreach ($_FILES["uploaded-images"]['name'] as $imageOrder => &$imageName) {
-			$addImageToDatabase = sprintf("INSERT INTO photogallery (path) VALUES ('%s')", mysqli_real_escape_string($mariaDbConnection, "{$photoGalleryPath}{$imageName}"));
+			$addImageToDatabase = "INSERT INTO `photogallery` (`path`) VALUES ('" . $photoGalleryPath . $imageName . "');";
 			if (!$_FILES["uploaded-images"]['error'][$imageOrder] && mysqli_query($mariaDbConnection, $addImageToDatabase) && move_uploaded_file($_FILES["uploaded-images"]['tmp_name'][$imageOrder], "{$photoGalleryPathFs}{$imageName}")) {
+				http_response_code(201);
 				$toFrontendAnswer[] = ['error' => false, 'uploadedName' => "$imageName", 'imgPath' => "{$photoGalleryPath}{$imageName}", 'id' => mysqli_insert_id($mariaDbConnection)];
 			} else {
+				http_response_code(501);
 				$toFrontendAnswer[] = ['error' => true, 'uploadedName' => $imageName];
 			}
 		}
 	} else {
+		http_response_code(501);
 		$toFrontendAnswer = false;
 	}
 	return json_encode($toFrontendAnswer);
 }
 
-function handleOpenImage()
+function handleOpenImage(): ?bool
 {
 	global $mariaDbConnection;
 	$response = json_decode(file_get_contents('php://input'), true);
-	if (mysqli_query($mariaDbConnection, sprintf("UPDATE photogallery SET opened_count=%d WHERE id=%d", mysqli_real_escape_string($mariaDbConnection, $response['opened-count']), mysqli_real_escape_string($mariaDbConnection, $response['database-id'])))) {
+	if (mysqli_query($mariaDbConnection, "UPDATE `photogallery` SET `opened_count` = '" . $response['opened-count'] . "' WHERE `id` = '" . $response['database-id'] . "';")) {
+		http_response_code(200);
 		return true;
 	}
+	http_response_code(501);
 	return null;
 }
 

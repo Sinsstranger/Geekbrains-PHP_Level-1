@@ -2,7 +2,6 @@ import {Fancybox} from "https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fanc
 
 Fancybox.bind('.fancy-gallery__item');
 const handleShows = async (event) => {
-	console.log(event.target.parentElement);
 	++event.target.parentElement.dataset.openedCount;
 	try {
 		const response = await fetch(`${location.origin}${document.querySelector('.add-photo-form').getAttribute('action')}`, {
@@ -25,6 +24,9 @@ document.querySelector('.add-photo-form').addEventListener('submit', async (even
 	let $parentEl = document.querySelector('.fancy-gallery');
 	try {
 		const response = await fetch(`${location.origin}${event.target.getAttribute('action')}`, {
+			headers: {
+				'Content-Type': 'multipart/form-data',
+			},
 			method: "POST",
 			body: new FormData(event.target),
 		});
