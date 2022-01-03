@@ -36,6 +36,10 @@ $photos_res = mysqli_query($mariaDbConnection, "SELECT * FROM photogallery ORDER
 		<label for="main-menu-trigger" class="main-menu__close"></label>
 		<p class="main-menu__title">Menu</p>
 		<ul class="main-menu__list">
+			<li class="main-menu__item">
+				<span class="main-menu__cat"><a href="/photogallery/" class="main-menu__link">Фотогаллерея</a></span>
+				<span class="main-menu__cat"><a href="/reviews/" class="main-menu__link">Отзывы</a></span>
+			</li>
 		</ul>
 	</div>
 </nav>

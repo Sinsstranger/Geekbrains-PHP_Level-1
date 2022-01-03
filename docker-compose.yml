@@ -3,6 +3,7 @@ networks:
   LAMP:
 services:
   php-apache:
+    container_name: 'PHP-APACHE'
     build:
       context: .
       dockerfile: 'Dockerfile'
@@ -19,12 +20,14 @@ services:
     networks:
       - LAMP
   MariaDb:
+    container_name: "MariaDb"
     image: "mariadb:latest"
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: example
       MYSQL_USER: sinstranger
       MYSQL_PASSWORD: example
+      TZ: Europe/Moscow
     volumes:
       - "./mysql/:/var/lib/mysql/"
     ports:
@@ -32,6 +35,7 @@ services:
     networks:
       - LAMP
   Adminer:
+    container_name: "ADMINER"
     image: "adminer:latest"
     restart: always
     environment:
